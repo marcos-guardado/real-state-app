@@ -1,0 +1,13 @@
+<h2 class="title">Welcome to Domazon Real State</h2>
+<div class="container">
+  <div>
+    <p-carousel [value]="houses" >
+      <ng-template let-house pTemplate="item">
+          <img class="carouse-image" src="{{house.image}}" alt="">
+      </ng-template>
+    </p-carousel>
+  </div>
+  <div class="cards-container">
+    <app-house-card class="card" *ngFor="let house of houses" [house]="house"></app-house-card>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.p-card {
+  background-color: red;
+}
+
+.house-card-description {
+  word-wrap: break-word;
+  margin: 1rem 0 1rem 0;
+  text-align: justify;
+}
+
+.house-card-container {
+  width: 300px;
+}
+
+.house-card-image {
+  width: 300px;
+  height: 200px;
+  border-radius: .5rem;
+}
+
+
+h4 {
+    text-align: center;
+    margin: 1rem 0 0 0;
+}
