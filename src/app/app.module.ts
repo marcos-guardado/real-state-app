@@ -18,6 +18,8 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgPrimeModule } from './shared/ng-prime.module';
 import { SharedModule } from './shared/shared.module';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 
 @NgModule({
   declarations: [
@@ -34,12 +36,14 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgPrimeModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
