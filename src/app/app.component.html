@@ -1,1 +1,2 @@
-<app-navbar class="navbar"></app-navbar> <router-outlet class="content"></router-outlet>
+<app-navbar class="navbar" *ngIf="isUserLogged"></app-navbar>
+<router-outlet class="content"></router-outlet>

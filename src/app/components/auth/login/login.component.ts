@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FirebaseErrorService } from 'src/app/services/firebase-error.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-login',
@@ -32,12 +33,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    const email = this.loginUser.value.email;
-    const password = this.loginUser.value.password;
-
     this.loading = true;
     this.afAuth
-      .signInWithEmailAndPassword(email, password)
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(({ user }: any) => {
         this.userService.setUser(user);
         this.loading = false;

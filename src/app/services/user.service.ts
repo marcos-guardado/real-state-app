@@ -4,14 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  private user: any;
   constructor() {}
 
   setUser(user: any) {
-    this.user = user.multiFactor.user;
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   getUser() {
-    return { ...this.user };
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
 }
