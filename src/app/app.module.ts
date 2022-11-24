@@ -21,6 +21,8 @@ import { SharedModule } from './shared/shared.module';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { PropertyDetailsComponent } from './components/property-details/property
     ToastrModule.forRoot(),
     NgPrimeModule,
     SharedModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

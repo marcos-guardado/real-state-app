@@ -2,15 +2,39 @@
   <div *ngIf="!loading" class="body">
     <img class="logo" src="/assets/img/login.png" alt="" />
     <h3>Login</h3>
-    <form (ngSubmit)="login()" [formGroup]="loginUser">
-      <div class="d-grid gap-2">
-        <button class="btn btn-primary btn-lg" type="submit">Enter</button>
-      </div>
-      <p class="mt-3">
-        You do not have an account? <a routerLink="/register">Register</a>
-      </p>
-      <a routerLink="/recover">Recover Password</a>
-    </form>
+    <div class="d-grid gap-2">
+      <button (click)="login()" class="btn btn-primary btn-lg">Enter</button>
+    </div>
+    <button pButton class="mt-3" (click)="showRegisterModal()">
+      You do not have an account? Register
+    </button>
   </div>
   <app-spinner *ngIf="loading"></app-spinner>
 </div>
+
+<p-dialog header="Register in Domazon" [(visible)]="showRegister">
+  <div class="register-modal-content">
+    <h4 class="mt-2 mb-2">Hello there!</h4>
+    <h5 class="mt-1 mb-1">What type of user want to be ?</h5>
+    <p-selectButton
+      class="mt-2 mb-2"
+      [options]="usersType"
+      optionLabel="label"
+      optionValue="value"
+      [(ngModel)]="userTypeSelected"
+    ></p-selectButton>
+    <button
+      pButton
+      class="p-button-outlined mt-2 mb-2"
+      (click)="createNewUser()"
+    >
+      <span class="ml-2 font-bold">Sign Up with Google</span>
+      <img
+        alt="logo"
+        src="https://i.imgur.com/fJ7CXFI.png"
+        class="ml-2"
+        style="width: 1.5rem"
+      />
+    </button>
+  </div>
+</p-dialog>

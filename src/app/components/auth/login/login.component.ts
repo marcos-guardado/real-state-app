@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseErrorService } from 'src/app/services/firebase-error.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 import firebase from 'firebase/compat/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,40 +12,64 @@ import firebase from 'firebase/compat/app';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginUser: FormGroup;
   loading: boolean = false;
-
+  showRegister: boolean = false;
+  userTypeSelected: 'seller' | 'buyer' | '' = '';
+  usersType = [
+    {
+      label: 'Seller',
+      value: 'seller',
+    },
+    {
+      label: 'Buyer',
+      value: 'buyer',
+    },
+  ];
   constructor(
-    private fb: FormBuilder,
     private afAuth: AngularFireAuth,
     private toastr: ToastrService,
     private router: Router,
     private firebaseError: FirebaseErrorService,
     private userService: UserService
-  ) {
-    this.loginUser = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {}
 
-  login() {
+  async login() {
     this.loading = true;
-    this.afAuth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(({ user }: any) => {
-        this.userService.setUser(user);
-        this.loading = false;
-        this.router.navigate(['/home']);
-      })
-      .catch((error) => {
-        this.loading = false;
-        this.toastr.error(
-          this.firebaseError.codeError(error.code),
-          'Notification'
+    try {
+      const user: firebase.auth.UserCredential =
+        await this.afAuth.signInWithPopup(
+          new firebase.auth.GoogleAuthProvider()
         );
-      });
+      this.userService.login(user.user!);
+      this.loading = false;
+      this.router.navigate(['/home']);
+    } catch (err: any) {
+      this.loading = false;
+      this.toastr.error(this.firebaseError.codeError(err.code), 'Notification');
+    }
+  }
+
+  async createNewUser() {
+    try {
+      const user: firebase.auth.UserCredential =
+        await this.afAuth.signInWithPopup(
+          new firebase.auth.GoogleAuthProvider().setCustomParameters({
+            prompt: 'select_account',
+          })
+        );
+      this.userService.createUser(user.user!, this.userTypeSelected as string);
+      this.loading = false;
+      this.showRegister = false;
+      this.router.navigate(['/home']);
+    } catch (err: any) {
+      this.loading = false;
+      this.toastr.error(this.firebaseError.codeError(err.code), 'Notification');
+    }
+  }
+
+  showRegisterModal() {
+    this.showRegister = true;
   }
 }

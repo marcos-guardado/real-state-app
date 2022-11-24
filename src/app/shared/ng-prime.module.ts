@@ -9,6 +9,8 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { DialogModule } from 'primeng/dialog';
+import {SelectButtonModule} from 'primeng/selectbutton';
+
 
 @NgModule({
   declarations: [],
@@ -23,6 +25,7 @@ import { DialogModule } from 'primeng/dialog';
     ProgressSpinnerModule,
     TagModule,
     DialogModule,
+    SelectButtonModule
   ],
   exports: [
     MenuModule,
@@ -34,6 +37,7 @@ import { DialogModule } from 'primeng/dialog';
     ProgressSpinnerModule,
     TagModule,
     DialogModule,
+    SelectButtonModule
   ],
 })
 export class NgPrimeModule {}
