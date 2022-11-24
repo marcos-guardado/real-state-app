@@ -1,0 +1,53 @@
+<div *ngIf="property; else spinnerTemplate" class="property-detail-container">
+  <div class="property-images-container">
+    <p-galleria
+      [value]="property.imageUrls"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-width': '660px' }"
+    >
+      <ng-template pTemplate="item" let-item>
+        <img
+          [src]="item"
+          [alt]="property.title"
+          style="width: 100%; display: block"
+        />
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+          <img [src]="item" style="width: 10%; display: block" />
+        </div>
+      </ng-template>
+    </p-galleria>
+    <div id="tdContainer" class=""></div>
+  </div>
+  <div class="property-info-container">
+    <h4>
+      {{ property.title }}
+    </h4>
+    <p-tag value="Most Popular" severity="warning"></p-tag>
+    <p>
+      {{ property.description }}
+    </p>
+    <div *ngIf="!isLoadingModel; else loadingModelTemplate">
+      <button (click)="show3dModel()" pButton>View 3D model</button>
+    </div>
+  </div>
+
+  <p-dialog
+    [header]="property.title"
+    [(visible)]="showModel"
+    (onHide)="hide3dModel()"
+    [closable]="true"
+    [modal]="true"
+  >
+    <div #renderContainer></div>
+  </p-dialog>
+</div>
+
+<ng-template #spinnerTemplate>
+  <p-progressSpinner></p-progressSpinner>
+</ng-template>
+
+<ng-template #loadingModelTemplate>
+  <button disabled pButton>Loading {{ loadingPercentage }}%</button>
+</ng-template>

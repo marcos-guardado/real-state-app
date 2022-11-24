@@ -1,6 +1,6 @@
 .title {
-    text-align: center;
-    margin: 3rem 0 3rem 0;
+  text-align: center;
+  margin: 3rem 0 3rem 0;
 }
 
 .carouse-image {
@@ -10,7 +10,7 @@
   width: 100%;
   height: 30rem;
   object-fit: cover;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .carousel-container {
@@ -20,7 +20,14 @@
 
 .cards-container {
   display: flex;
-  /* justify-content: center; */
   flex-wrap: wrap;
+  justify-content: center;
+  justify-content: start;
   gap: 1rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .cards-container {
+    justify-content: center;
+  }
 }

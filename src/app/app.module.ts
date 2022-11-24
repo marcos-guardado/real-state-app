@@ -20,6 +20,7 @@ import { NgPrimeModule } from './shared/ng-prime.module';
 import { SharedModule } from './shared/shared.module';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
     RecoverComponent,
     SpinnerComponent,
     HomeComponent,
+    PropertyDetailsComponent,
   ],
   imports: [
     BrowserModule,

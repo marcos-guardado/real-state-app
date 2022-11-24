@@ -1,0 +1,12 @@
+.property-detail-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem;
+}
+.property-images-container {
+  flex: 1;
+}
+
+.property-info-container {
+  flex: 1;
+}

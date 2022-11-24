@@ -1,7 +1,6 @@
-.p-card {
-  background-color: red;
+.card-info-container {
+  width: 350px;
 }
-
 .house-card-description {
   word-wrap: break-word;
   margin: 1rem 0 1rem 0;
@@ -15,11 +14,10 @@
 .house-card-image {
   width: 300px;
   height: 200px;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
-
 h4 {
-    text-align: center;
-    margin: 1rem 0 0 0;
+  text-align: center;
+  margin: 1rem 0 0 0;
 }

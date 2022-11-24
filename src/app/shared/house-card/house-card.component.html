@@ -1,13 +1,16 @@
-<p-card styleClass="">
+<p-card class="card-info-container">
   <ng-template pTemplate="header">
     <h4>
       {{ house.title }}
     </h4>
   </ng-template>
   <div class="house-card-container">
-    <img class="house-card-image" src="{{ house.image }}" alt="" />
+    <img class="house-card-image" src="{{ house.previewImageUrl }}" alt="" />
     <p class="house-card-description">
       {{ house.description }}
     </p>
+    <p-button (click)="seePropertyDetails(house._id)" type="button"
+      >See more</p-button
+    >
   </div>
 </p-card>
