@@ -4,10 +4,17 @@ import {
   DocumentData,
   Firestore,
   collection,
+  collectionData,
 } from '@angular/fire/firestore';
-import { addDoc, doc, documentId, DocumentReference } from 'firebase/firestore';
+import {
+  addDoc,
+  doc,
+  documentId,
+  DocumentReference,
+  getDocs,
+} from 'firebase/firestore';
 import firebase from 'firebase/compat/app';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +27,16 @@ export class UserService {
     return docData(user, { idField: '_id' });
   }
 
-  login(user: firebase.User) {
-    const existUser = collection(this.firestore, 'users');
+  login({ email }: firebase.User) {
+    collectionData(collection(this.firestore, 'users'))
+      .pipe(map((users) => users.find((user) => user['email'] === email)))
+      .subscribe((user) => {
+        if (user) {
+          sessionStorage.setItem('user', JSON.stringify(user));
+        } else {
+          throw Error('An error has ocurred');
+        }
+      });
   }
 
   async createUser(user: firebase.User, userType: string) {
@@ -44,6 +59,6 @@ export class UserService {
   }
 
   getUser() {
-    return JSON.parse(localStorage.getItem('user') || '{}');
+    return JSON.parse(sessionStorage.getItem('user') || '{}');
   }
 }

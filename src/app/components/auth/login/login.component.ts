@@ -40,7 +40,9 @@ export class LoginComponent implements OnInit {
     try {
       const user: firebase.auth.UserCredential =
         await this.afAuth.signInWithPopup(
-          new firebase.auth.GoogleAuthProvider()
+          new firebase.auth.GoogleAuthProvider().setCustomParameters({
+            prompt: 'select_account',
+          })
         );
       this.userService.login(user.user!);
       this.loading = false;
