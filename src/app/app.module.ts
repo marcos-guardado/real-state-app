@@ -22,7 +22,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 import { FormsModule } from '@angular/forms';
-
+import { AddPropertyComponent } from './components/add-property/add-property.component';
+import { ValidateRolePipe } from './pipes/validate-role.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { FormsModule } from '@angular/forms';
     SpinnerComponent,
     HomeComponent,
     PropertyDetailsComponent,
+    AddPropertyComponent,
+    ValidateRolePipe,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +50,11 @@ import { FormsModule } from '@angular/forms';
     ToastrModule.forRoot(),
     NgPrimeModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [ValidateRolePipe],
 })
 export class AppModule {}

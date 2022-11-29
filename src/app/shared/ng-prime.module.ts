@@ -9,8 +9,10 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { DialogModule } from 'primeng/dialog';
-import {SelectButtonModule} from 'primeng/selectbutton';
-
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   declarations: [],
@@ -25,7 +27,10 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     ProgressSpinnerModule,
     TagModule,
     DialogModule,
-    SelectButtonModule
+    SelectButtonModule,
+    InputTextModule,
+    FileUploadModule,
+    ProgressBarModule,
   ],
   exports: [
     MenuModule,
@@ -37,7 +42,10 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     ProgressSpinnerModule,
     TagModule,
     DialogModule,
-    SelectButtonModule
+    SelectButtonModule,
+    InputTextModule,
+    FileUploadModule,
+    ProgressBarModule,
   ],
 })
 export class NgPrimeModule {}

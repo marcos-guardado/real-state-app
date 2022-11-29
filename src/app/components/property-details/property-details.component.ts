@@ -87,7 +87,7 @@ export class PropertyDetailsComponent
     this.showModel = false;
   }
 
-  createScene() {
+  async createScene() {
     const renderer = new THREE.WebGLRenderer();
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -107,8 +107,11 @@ export class PropertyDetailsComponent
     this.canvasRef.first.nativeElement.appendChild(renderer.domElement);
     const loader = new OBJLoader();
 
+    const modelUrl = await this.propertiesService.getPropertyModelRef(
+      this.property
+    );
     loader.load(
-      this.property.model,
+      modelUrl,
       // called when resource is loaded
       function (object) {
         const animate = function () {

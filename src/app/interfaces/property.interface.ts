@@ -5,4 +5,5 @@ export interface IProperty {
   previewImageUrl: string;
   model: string;
   _id: string;
+  seller_id: string;
 }

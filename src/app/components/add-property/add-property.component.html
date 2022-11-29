@@ -1,0 +1,70 @@
+<p-card>
+  <h4 class="mb-3">Add Property</h4>
+
+  <span class="p-float-label mb-3">
+    <input [(ngModel)]="title" id="title" type="text" pInputText />
+    <label for="title">Title</label>
+  </span>
+  <span class="p-float-label mt-5 mb-3">
+    <textarea
+      [(ngModel)]="description"
+      id="description"
+      rows="5"
+      cols="30"
+      pInputTextarea
+    ></textarea>
+    <label for="description">Description</label>
+  </span>
+  <span class="mb-3">
+    <label>Preview Image</label>
+    <div class="mb-3" *ngIf="isUploadingPreview; else uploadPreview">
+      <p-progressBar [value]="previewImageProgress"></p-progressBar>
+    </div>
+  </span>
+  <span class="mb-3">
+    <label>Images</label>
+    <div class="mb-3" *ngIf="isUploadingImages; else uploadImages">
+      <p-progressBar mode="indeterminate"></p-progressBar>
+      <p-progressBar [value]="imagesProgress"></p-progressBar>
+    </div>
+  </span>
+  <span class="mb-3">
+    <label>3D Model</label>
+    <div class="mb-3" *ngIf="isUploadingModel; else uploadModel">
+      <p-progressBar [value]="modelProgress"></p-progressBar>
+    </div>
+  </span>
+  <button class="mt-3 mb-3" (click)="onSubmit()" pButton>Save Property</button>
+</p-card>
+
+<ng-template #uploadPreview>
+  <p-fileUpload
+    class="mb-3"
+    mode="basic"
+    name="previewImage"
+    accept="image/*"
+    [customUpload]="true"
+    (uploadHandler)="onUploadPreviewImage($event)"
+  ></p-fileUpload>
+</ng-template>
+
+<ng-template #uploadImages>
+  <p-fileUpload
+    class="mb-3"
+    mode="basic"
+    name="previewImage"
+    [multiple]="true"
+    accept="image/*"
+    [customUpload]="true"
+    (uploadHandler)="onUploadImages($event)"
+  ></p-fileUpload>
+</ng-template>
+<ng-template #uploadModel>
+  <p-fileUpload
+    class="mb-3"
+    [customUpload]="true"
+    (uploadHandler)="onUploadModel($event)"
+    mode="basic"
+    name="model"
+  ></p-fileUpload>
+</ng-template>
